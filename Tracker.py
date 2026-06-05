@@ -15,7 +15,8 @@ while True:
         ex=input('Enter Exercise: ')
         weight=(input('Enter Weight(kg): '))
         rep=int(input('Enter Reps: '))
-        workout={"Exercise": ex, "Weight": weight, "Reps": rep}
+        date=input("Date (DD-MM-YYYY): ")
+        workout={"Exercise": ex, "Weight": weight, "Reps": rep, "Date": date}
         workouts.append(workout)
         with open("workouts.json", "w") as file:
             json.dump(workouts, file, indent=4)
@@ -27,7 +28,8 @@ while True:
             print('No Workouts Found. ')
         else:
             for workout in workouts:
-                print(f"{workout["Exercise"]} - "
+                print(f"{workout["Date"]} | "
+                          f"{workout["Exercise"]} - "
                           f"{workout["Weight"]} x "
                           f"{workout["Reps"]} reps")
         
