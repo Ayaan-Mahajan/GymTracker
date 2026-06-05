@@ -1,11 +1,13 @@
 # Gym Tracker
-A simple Python-based Gym Tracker
+A simple Python-based Gym Tracker to track workouts and store progress locally
 
 ## Features
 - Add Workouts
 - View Workout History
 - Save Workouts using JSON
 - Track Workout Dates
+- Track Muscle Groups
+- Persistent data storage between program rums
 
 ## How It Works
 Users can enter:
@@ -13,6 +15,7 @@ Users can enter:
 - Weights lifted
 - Number of reps
 - Workout Date
+- Muscle Group
 
 The workout data is stored in a JSON file and can be viewed later.
 
@@ -21,10 +24,25 @@ The workout data is stored in a JSON file and can be viewed later.
 - JSON
 - Git & GitHub
 
+## Version History
+ 
+ ### V1
+ - Added Workout Tracking
+ - View Workout History
+ - Save Data Using JSON
+
+ ### V2
+ - Added Date Tracking
+ 
+ ### V3
+ - Added Muscle Group Tracking
+
 ## Future Improvements
-- Add Muscle Groups
 - Add Workout Statistics
 - Add Personal Records (PRs)
+- Search Workouts
+- Delete Workouts
+- Better Menu System
 - Build A GUI/Web version
 
 ## Author
