@@ -13,6 +13,7 @@ Users can enter:
 - Weights lifted
 - Number of reps
 - Workout Date
+
 The workout data is stored in a JSON file and can be viewed later.
 
 ## Technologies Used
@@ -26,7 +27,7 @@ The workout data is stored in a JSON file and can be viewed later.
 - Add Personal Records (PRs)
 - Build A GUI/Web version
 
-# Author
+## Author
 Ayaan Mahajan
 
 Built as my first programming project
