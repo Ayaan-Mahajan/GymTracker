@@ -17,6 +17,13 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
  ### V4
  - Added Support For Multiple Sets
  - Each Set Can Have Different Weights And Reps
+ - Support For Both Old And New Workout Formats
+
+ ### V5
+ - Added Workout Statistics
+ - Total Workouts Tracked
+ - Workout Count By Muscle Group
+ - Total Sets Performed
 
 ## Technologies Used
 - Python
@@ -24,7 +31,6 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
 - Git & GitHub
 
 ## Future Improvements
-- Add Workout Statistics
 - Add Personal Records (PRs)
 - Search Workouts
 - Delete Workouts
