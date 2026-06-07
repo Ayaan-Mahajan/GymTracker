@@ -8,7 +8,8 @@ while True:
     print("\n-----Gym Tracker-----")
     print("1. Add Workout")
     print("2. View Workouts")
-    print("3. Exit")
+    print("3. Workout Statistics")
+    print("4. Exit")
     choice=int(input('Enter choice: '))
     
     if choice==1:
@@ -47,8 +48,35 @@ while True:
                 print()
         
     elif choice==3:
+        print("\n===== WORKOUT STATISTICS =====")
+        total_workouts=len(workouts)
+        print(f"Total Workouts: {total_workouts}")
+        total_sets=0
+        muscle_counts={}
+        for workout in workouts:
+            muscle=workout["Muscle_Group"]
+            if muscle in muscle_counts:
+                muscle_counts[muscle]+=1
+            else:
+                muscle_counts[muscle]=1
+        
+            if "Sets" in workout:
+                total_sets += len(workout["Sets"])
+            
+        print("\nWorkouts By Muscle Group: ")
+        print()
+        
+        for muscle, count in muscle_counts.items():
+            print(f"{muscle}: {count}")
+            
+        print()
+        print(f"Total Sets Performed: {total_sets} ")
+
+
+    elif choice==4:
         print('Goodbye!')
         break
+    
     else:
         print('Invalid Choice')
     
