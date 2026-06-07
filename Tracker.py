@@ -12,12 +12,17 @@ while True:
     choice=int(input('Enter choice: '))
     
     if choice==1:
-        ex=input('Enter Exercise: ')
-        weight=(input('Enter Weight(kg): '))
-        rep=int(input('Enter Reps: '))
+        exercise=input('Enter Exercise: ')
         date=input("Date (DD-MM-YYYY): ")
         muscle_group=input("Enter Muscle Group: ")
-        workout={"Exercise": ex, "Weight": weight, "Reps": rep, "Date": date, "Muscle_Group": muscle_group}
+        sets=[]
+        num_sets=int(input("How many sets? "))
+        for i in range(num_sets):
+            weight=input(f"Set {i+1} Weight: ")
+            rep=input(f"Set {i+1} Reps: ")
+            set_data={'Weight': weight, 'Reps': rep}
+            sets.append(set_data)
+        workout={"Exercise": exercise, "Date": date, "Muscle_Group": muscle_group, "Sets": sets}
         workouts.append(workout)
         with open("workouts.json", "w") as file:
             json.dump(workouts, file, indent=4)
@@ -29,11 +34,17 @@ while True:
             print('No Workouts Found. ')
         else:
             for workout in workouts:
-                print(f"{workout["Date"]} | "
+                print(f"\n{workout["Date"]} | "
                           f"{workout["Muscle_Group"]} | "
-                          f"{workout["Exercise"]} - "
-                          f"{workout["Weight"]} x "
-                          f"{workout["Reps"]} reps")
+                          f"{workout["Exercise"]}  ")
+                if "Sets" in workout:
+                    for i, set_data in enumerate(workout["Sets"]):
+                        print (f"Set {i+1}: "
+                                   f"{set_data["Weight"]} kg x "
+                                   f"{set_data["Reps"]} reps ")
+                else:
+                    print(f"{workout["Weight"]} kg x {workout["Reps"]} reps")
+                print()
         
     elif choice==3:
         print('Goodbye!')
