@@ -37,6 +37,10 @@ The workout data is stored in a JSON file and can be viewed later.
  ### V3
  - Added Muscle Group Tracking
 
+ ### V4
+ - Added Support For Multiple Sets
+ - Each Set Can Have Different Weights And Reps
+
 ## Future Improvements
 - Add Workout Statistics
 - Add Personal Records (PRs)
