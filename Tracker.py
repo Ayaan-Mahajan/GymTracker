@@ -9,7 +9,8 @@ while True:
     print("1. Add Workout")
     print("2. View Workouts")
     print("3. Workout Statistics")
-    print("4. Exit")
+    print("4. Personal Records")
+    print("5. Exit")
     choice=int(input('Enter choice: '))
     
     if choice==1:
@@ -72,8 +73,32 @@ while True:
         print()
         print(f"Total Sets Performed: {total_sets} ")
 
-
     elif choice==4:
+        print("\n===== PERSONAL RECORDS =====")
+        prs={}
+        for workout in workouts:
+            exercise=workout["Exercise"]
+            if "Sets" in workout:
+                for set_data in workout["Sets"]:
+                    weight=float(set_data["Weight"])
+                    if exercise not in prs:
+                        prs[exercise]=weight
+                    elif weight>prs[exercise]:
+                        prs[exercise]=weight
+            else:
+                weight=float(workout["Weight"].replace("kg", " "))
+                if exercise not in prs:
+                    prs[exercise]=weight
+                elif weight>prs[exercise]:
+                    prs[exercise]=weight
+        for exercise, pr in prs.items():
+            if pr.is_integer():
+                print(f"{exercise}: {int(pr)} kg")
+            else:
+                print(f"{exercise}: {pr} kg")
+
+
+    elif choice==5:
         print('Goodbye!')
         break
     
