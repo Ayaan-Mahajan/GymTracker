@@ -25,13 +25,18 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
  - Workout Count By Muscle Group
  - Total Sets Performed
 
+ ### V6
+ - Added Personal Records (PR) Tracking
+ - Finds The Highest Weight Lifted For Each Exercise
+ - Supports Both Old And New Workout Formats
+
+
 ## Technologies Used
 - Python
 - JSON
 - Git & GitHub
 
 ## Future Improvements
-- Add Personal Records (PRs)
 - Search Workouts
 - Delete Workouts
 - Monthly Progress
