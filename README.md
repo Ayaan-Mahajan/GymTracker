@@ -30,6 +30,9 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
  - Finds The Highest Weight Lifted For Each Exercise
  - Supports Both Old And New Workout Formats
 
+ ### V7
+ - Search Workouts By Exercise
+
 
 ## Technologies Used
 - Python
