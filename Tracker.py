@@ -12,7 +12,8 @@ while True:
     print("4. Personal Records")
     print("5. Search by Exercise")
     print("6. Search by Muscle Group")
-    print("7. Exit")
+    print("7. Delete Workout")
+    print("8. Exit")
     choice=int(input('Enter choice: '))
     
     if choice==1:
@@ -134,9 +135,24 @@ while True:
                     print(f"{workout['Weight']} x {workout['Reps']} reps")
         if not found:
             print('No Workouts Found. ')
-        
 
     elif choice==7:
+        print("===== DELETE WORKOUT =====")
+        for i, workout in enumerate(workouts):
+            print(f"{i+1}. {workout['Date']} | {workout['Exercise']} ({workout['Muscle_Group']})")
+        try:
+            delete_number=int(input('Enter workout number to delete: '))
+            if 1 <= delete_number <= len(workouts):
+                workouts.pop(delete_number - 1)
+                with open("workouts.json", "w") as file:
+                    json.dump(workouts, file, indent=4)
+                print("Workout deleted successfully!")
+            else:
+                print("Invalid workout number!")
+        except ValueError:
+            print("Please enter a valid number!")
+          
+    elif choice==8:
         print('Goodbye!')
         break
     
