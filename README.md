@@ -40,6 +40,12 @@ A simple Python-based Gym Tracker for tracking workouts, sets, personal records,
  - Displays All Workouts For A Selected Muscle Group
  - Supports Both Old And New Workout Formats
 
+ ### V9
+ - Delete Workout
+ - JSON Update
+ - Invalid Index Handling
+ - Invalid Input Handling
+
 
 ## Technologies Used
 - Python
@@ -47,7 +53,6 @@ A simple Python-based Gym Tracker for tracking workouts, sets, personal records,
 - Git & GitHub
 
 ## Future Improvements
-- Delete Workouts
 - Edit Workouts
 - Monthly Progress
 - Workout Volume Tracking
