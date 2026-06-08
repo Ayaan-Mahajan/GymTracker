@@ -1,5 +1,5 @@
 # Gym Tracker
-A simple Python-based Gym Tracker to track workouts and store progress locally
+A simple Python-based Gym Tracker for tracking workouts, sets, personal records, and workout statistics
 
 ## Features
  
@@ -32,6 +32,13 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
 
  ### V7
  - Search Workouts By Exercise
+ - Case Insensitive Search
+ - Supports Both Old And New Workout Formats
+
+ ### V8
+ - Search Workouts By Muscle Group
+ - Displays All Workouts For A Selected Muscle Group
+ - Supports Both Old And New Workout Formats
 
 
 ## Technologies Used
@@ -40,11 +47,11 @@ A simple Python-based Gym Tracker to track workouts and store progress locally
 - Git & GitHub
 
 ## Future Improvements
-- Search Workouts
 - Delete Workouts
+- Edit Workouts
 - Monthly Progress
-- Better Menu System
-- Build A GUI/Web version
+- Workout Volume Tracking
+- Export Workout Data
 
 ## Author
 Ayaan Mahajan
