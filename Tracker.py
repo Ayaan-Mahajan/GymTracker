@@ -10,8 +10,9 @@ while True:
     print("2. View Workouts")
     print("3. Workout Statistics")
     print("4. Personal Records")
-    print("5. Search Workouts")
-    print("6. Exit")
+    print("5. Search by Exercise")
+    print("6. Search by Muscle Group")
+    print("7. Exit")
     choice=int(input('Enter choice: '))
     
     if choice==1:
@@ -117,6 +118,25 @@ while True:
             print('No Workouts Found. ')
 
     elif choice==6:
+        search_muscle=input("Enter Muscle Group: ")
+        print("\n===== SEARCH RESULTS =====")
+        found=False
+        for workout in workouts:
+            if workout["Muscle_Group"].lower() == search_muscle.lower():
+                found=True
+                print(f"\n{workout['Date']} | "
+                          f"{workout['Muscle_Group']} | "
+                          f"{workout['Exercise']}")
+                if "Sets" in workout:
+                    for i, set_data in enumerate(workout["Sets"]):
+                        print(f"Set {i+1}: {set_data['Weight']} kg x {set_data['Reps']} reps")
+                else:
+                    print(f"{workout['Weight']} x {workout['Reps']} reps")
+        if not found:
+            print('No Workouts Found. ')
+        
+
+    elif choice==7:
         print('Goodbye!')
         break
     
