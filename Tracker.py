@@ -13,7 +13,8 @@ while True:
     print("5. Search by Exercise")
     print("6. Search by Muscle Group")
     print("7. Delete Workout")
-    print("8. Exit")
+    print("8. Edit Workout")
+    print("9. Exit")
     choice=int(input('Enter choice: '))
     
     if choice==1:
@@ -137,7 +138,7 @@ while True:
             print('No Workouts Found. ')
 
     elif choice==7:
-        print("===== DELETE WORKOUT =====")
+        print("\n===== DELETE WORKOUT =====")
         for i, workout in enumerate(workouts):
             print(f"{i+1}. {workout['Date']} | {workout['Exercise']} ({workout['Muscle_Group']})")
         try:
@@ -151,8 +152,56 @@ while True:
                 print("Invalid workout number!")
         except ValueError:
             print("Please enter a valid number!")
-          
+            
     elif choice==8:
+        print("\n===== EDIT WORKOUT =====")
+        for i, workout in enumerate(workouts):
+            print(f"{i+1}. {workout['Date']} | {workout['Exercise']} ({workout['Muscle_Group']})")
+        try:
+            edit_number=int(input("Enter workout number to edit: "))
+            if 1 <= edit_number <= len(workouts):
+                index=edit_number-1
+                print('Current Date: ', workouts[index]['Date'])
+                print('Current Exercise: ', workouts[index]['Exercise'])
+                print('Current Muscle Group: ', workouts[index]['Muscle_Group'])
+                new_date=input('Enter New Date (press enter to keep same): ')
+                new_exercise=input('Enter new exercise (press enter to keep same): ')
+                new_muscle=input('Enter new muscle group (press enter to keep same): ')
+                if new_date != "":
+                    workouts[index]["Date"]=new_date
+                if new_exercise != "":
+                    workouts[index]["Exercise"]=new_exercise
+                if new_muscle !="":
+                    workouts[index]["Muscle_Group"]=new_muscle
+                edit_sets=input("Do you want to edit sets? (y/n): ")
+            else:
+                print('Invalid Workout Number')
+                if edit_sets.lower()=="y":
+                    for i, current_set in enumerate(workouts[index]['Sets']):
+                        print(f"{i+1}. {current_set['Weight']}kg x {current_set['Reps']} reps")
+       
+            set_number=int(input('Enter set number to edit: '))
+            set_index=set_number-1
+            if 1<=set_number<=len(workouts[index]['Sets']):
+                selected_set=workouts[index]['Sets'][set_index]
+                print("Current Weight:", selected_set["Weight"])
+                print("Current Reps:", selected_set["Reps"])
+                new_weight = input("Enter new weight (press enter to keep same): ")
+                new_reps = input("Enter new reps (press enter to keep same): ")
+                if new_weight != "":
+                    selected_set["Weight"] = new_weight
+                if new_reps != "":
+                    selected_set["Reps"] = new_reps
+                with open("workouts.json", "w") as file:
+                    json.dump(workouts, file, indent=4)
+                print("Workout updated successfully!")
+            else:
+                print("Invalid Set Number!")
+
+        except ValueError:
+            print("Please enter a valid number!")
+
+    elif choice==9:
         print('Goodbye!')
         break
     
