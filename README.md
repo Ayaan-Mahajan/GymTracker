@@ -2,7 +2,27 @@
 A simple Python-based Gym Tracker for tracking workouts, sets, personal records, and workout statistics
 
 ## Features
+
+### Workout Management
+- Add workouts with date, exercise, muscle group, weight, and reps
+- View complete workout history
+- Delete existing workouts
+- Edit existing workouts
+### Set Tracking
+- Track multiple sets for each exercise
+- Update set weight and reps
+- Store workout data in JSON format
+### Search & Analysis
+- Search workouts by exercise name
+- Search workouts by muscle group
+- View workout statistics
+- Track personal records (PRs)
+### Data Persistence
+- Automatically save workouts to a JSON file
+- Load previous workout history when the program starts
  
+## Version History
+
  ### V1
  - Added Workout Tracking
  - View Workout History
@@ -46,6 +66,12 @@ A simple Python-based Gym Tracker for tracking workouts, sets, personal records,
  - Invalid Index Handling
  - Invalid Input Handling
 
+ ### V10
+ - Added workout editing functionality
+ - Edit date, exercise, and muscle group
+ - Edit individual set weight and reps
+ - Added validation and error handling for workout editing
+
 
 ## Technologies Used
 - Python
@@ -53,10 +79,11 @@ A simple Python-based Gym Tracker for tracking workouts, sets, personal records,
 - Git & GitHub
 
 ## Future Improvements
-- Edit Workouts
-- Monthly Progress
-- Workout Volume Tracking
-- Export Workout Data
+- Refactor code using functions
+- Graphical User Interface (GUI)
+- Advanced workout analytics
+- Workout streak tracking
+- Progress visualization
 
 ## Author
 Ayaan Mahajan
