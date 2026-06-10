@@ -23,8 +23,9 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 ### Desktop GUI
 - View workouts through a graphical interface
 - Add workouts without using the terminal
-- Support for up to 3 sets directly through the GUI
-- Automatic JSON saving
+- Dynamic set entry using an "Add Set" button
+- Support for unlimited workout sets
+- Automatic JSON saving through the GUI
 - Backward compatibility with older workout data formats
 
 ### Reliability
@@ -46,6 +47,7 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - V11 – JSON persistence improvements
 - V12 – GUI workout viewer using CustomTkinter
 - V13 – GUI workout entry with multi-set support
+- V14 – Dynamic set addition with unlimited workout sets
 
 ## Technologies Used
 - Python
@@ -89,12 +91,12 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 ![View Workouts](screenshots/view_workouts.png)
 
 ## Future Improvements
-- Dynamic "Add Set" button
 - Search functionality in GUI
 - Statistics dashboard
 - PR dashboard
 - Export workouts to CSV
 - Data visualizations and charts
+- Remove individual sets from the GUI
 
 ## About This Project
 I built Gym Tracker as a personal project to strengthen my Python programming skills before starting college. Through this project, I learned:
