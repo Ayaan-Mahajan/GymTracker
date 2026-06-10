@@ -20,61 +20,63 @@ def add_workout():
     muscle_entry = ctk.CTkEntry(window)
     muscle_entry.pack()
 
-    ctk.CTkLabel(window, text="Set 1 Weight (kg)").pack(pady=5)
-    set1_weight = ctk.CTkEntry(window)
-    set1_weight.pack()
-
-    ctk.CTkLabel(window, text="Set 1 Reps").pack(pady=5)
-    set1_reps = ctk.CTkEntry(window)
-    set1_reps.pack()
+    sets_frame = ctk.CTkFrame(window)
+    sets_frame.pack(pady=10, fill="x")
 
 
-    ctk.CTkLabel(window, text="Set 2 Weight (kg)").pack(pady=5)
-    set2_weight = ctk.CTkEntry(window)
-    set2_weight.pack()
+    set_entries = []
 
-    ctk.CTkLabel(window, text="Set 2 Reps").pack(pady=5)
-    set2_reps = ctk.CTkEntry(window)
-    set2_reps.pack()
+    def add_set():
+        set_number = len(set_entries) + 1
 
+        ctk.CTkLabel(
+           sets_frame,
+           text=f"Set {set_number} Weight (kg)"
+        ).pack(pady=5)
 
-    ctk.CTkLabel(window, text="Set 3 Weight (kg)").pack(pady=5)
-    set3_weight = ctk.CTkEntry(window)
-    set3_weight.pack()
+        weight_entry = ctk.CTkEntry(sets_frame)
+        weight_entry.pack()
 
-    ctk.CTkLabel(window, text="Set 3 Reps").pack(pady=5)
-    set3_reps = ctk.CTkEntry(window)
-    set3_reps.pack()
+        ctk.CTkLabel(
+            sets_frame,
+            text=f"Set {set_number} Reps"
+        ).pack(pady=5)
 
+        reps_entry = ctk.CTkEntry(sets_frame)
+        reps_entry.pack()
+
+        set_entries.append(
+            (weight_entry, reps_entry))
+        
     
-    success_label = ctk.CTkLabel(
-        window,
-        text=""
-    )
-    success_label.pack()
+    add_set()
+
+    add_set_button = ctk.CTkButton(
+       window,
+       text="➕ Add Set",
+       command=add_set
+)
+
+    add_set_button.pack(pady=10)
 
     
     def save_workout():
 
         sets = []
 
-        if set1_weight.get() != "" and set1_reps.get() != "":
-           sets.append({
-               "Weight": set1_weight.get(),
-                "Reps": set1_reps.get()
-            })
+        for weight_entry, reps_entry in set_entries:
+            if (
+                weight_entry.get() != ""
+                and reps_entry.get() != ""
+    ):
 
-        if set2_weight.get() != "" and set2_reps.get() !="":
-            sets.append({
-                "Weight": set2_weight.get(),
-                "Reps": set2_reps.get()
-           })
-
-        if set3_weight.get() != "" and set3_reps.get() != "":
-            sets.append({
-                "Weight": set3_weight.get(),
-                "Reps": set3_reps.get()
-           })
+                sets.append(
+                   {
+                        "Weight": weight_entry.get(),
+                        "Reps": reps_entry.get()
+                  }
+        )
+            
 
         new_workout = {
             "Date": date_entry.get(),
@@ -98,9 +100,9 @@ def add_workout():
         success_label.configure(
             text="Workout Saved! 😭🔥"
         )
-        print("Before destroy")
+        
         window.destroy()
-        print("After destroy")
+        
 
     save_button = ctk.CTkButton(
         window,
@@ -109,6 +111,12 @@ def add_workout():
     )
 
     save_button.pack(pady=20)
+
+    success_label = ctk.CTkLabel(
+    window,
+    text=""
+)
+    success_label.pack()
     
     
   
