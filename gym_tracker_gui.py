@@ -186,7 +186,139 @@ def view_workouts():
     )
     except FileNotFoundError:
         textbox.insert("end", "workouts.json not found 😭")
-    
+
+def search_workouts():
+    window = ctk.CTkToplevel(app)
+
+    window.title("Search Workouts")
+    window.geometry("400x300")
+
+    ctk.CTkLabel(
+        window,
+        text="Search Workouts",
+        font=("Arial", 20, "bold")
+    ).pack(pady=20)
+
+    ctk.CTkLabel(
+    window,
+    text="Search By"
+    ).pack(pady=5)
+
+    search_type = ctk.StringVar(value="Exercise")
+
+    search_menu = ctk.CTkOptionMenu(
+    window,
+    values=["Exercise", "Muscle Group"],
+    variable=search_type
+    )
+
+    search_menu.pack(pady=5)
+
+    ctk.CTkLabel(
+    window,
+    text="Enter Search Term"
+    ).pack(pady=5)
+
+    search_entry = ctk.CTkEntry(window)
+
+    search_entry.pack(pady=5)
+
+    def perform_search():
+        results_box.delete("1.0", "end")
+
+        try:
+            with open("workouts.json", "r") as file:
+                workouts = json.load(file)
+
+        except (FileNotFoundError, json.JSONDecodeError):
+            results_box.insert(
+            "end",
+            "No workouts found."
+            )
+            return
+
+        query = search_entry.get().lower()
+
+        search_by = search_type.get()
+
+        matches = []
+
+        for workout in workouts:
+            if (search_by == "Exercise" and query in workout["Exercise"].lower()):
+                matches.append(workout)
+            elif (search_by == "Muscle Group" and query in workout["Muscle_Group"].lower()):
+                matches.append(workout)
+
+        if len(matches) == 0:
+            results_box.insert(
+                "end",
+                "No matching workouts found."
+           )
+
+            return
+
+        for workout in matches:
+            results_box.insert(
+                "end",
+                f"Date: {workout['Date']}\n"
+            )
+
+            results_box.insert(
+                "end",
+                f"Exercise: {workout['Exercise']}\n"
+            )
+
+            results_box.insert(
+                "end",
+                f"Muscle Group: {workout['Muscle_Group']}\n"
+            )
+
+            results_box.insert(
+                "end",
+                "Sets:\n"
+            )
+
+            if "Sets" in workout:
+                for index, workout_set in enumerate(workout["Sets"], start=1):
+                    results_box.insert(
+                        "end",
+                        f"  Set {index}: "
+                        f"{workout_set['Weight']} kg × "
+                        f"{workout_set['Reps']} reps\n"
+                   )
+
+            else:
+                results_box.insert(
+                    "end",
+                    f"Weight: {workout['Weight']} kg\n"
+                )
+
+                results_box.insert(
+                    "end",
+                    f"Reps: {workout['Reps']}\n"
+               )
+
+            results_box.insert(
+                "end",
+                "\n" + "-" * 35 + "\n\n"
+            )
+    search_btn = ctk.CTkButton(
+        window,
+        text="Search",
+        command=perform_search
+    )
+
+    search_btn.pack(pady=10)
+
+    results_box = ctk.CTkTextbox(
+    window,
+    width=350,
+    height=150
+    )
+
+    results_box.pack(pady=15)
+
+
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
@@ -223,7 +355,8 @@ view_button.pack(pady=10)
 
 search_button = ctk.CTkButton(
     app,
-    text="Search"
+    text="Search",
+    command=search_workouts
 )
 search_button.pack(pady=10)
 
