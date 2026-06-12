@@ -318,6 +318,72 @@ def search_workouts():
 
     results_box.pack(pady=15)
 
+def view_prs():
+    window = ctk.CTkToplevel(app)
+
+    window.title("Personal Records")
+    window.geometry("450x500")
+
+    ctk.CTkLabel(
+        window,
+        text="🏆 Personal Records",
+        font=("Arial", 20, "bold")
+    ).pack(pady=20)
+
+    scroll_frame = ctk.CTkScrollableFrame(
+    window,
+    width=400,
+    height=350
+    )
+
+    scroll_frame.pack(
+    padx=20,
+    pady=10,
+    fill="both",
+    expand=True
+    )
+
+    try:
+        with open("workouts.json", "r") as file:
+            workouts = json.load(file)
+        print("Workouts loaded:", len(workouts))
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        ctk.CTkLabel(
+            window,
+        text="No workouts found."
+    ).pack(pady=20)
+        return
+    prs = {}
+    for workout in workouts:
+        exercise = workout["Exercise"]
+        highest_weight = 0
+        if "Sets" in workout:
+            for workout_set in workout["Sets"]:
+                weight = float(workout_set["Weight"])
+
+                highest_weight = max(
+                highest_weight,
+                weight
+                )
+
+        else:
+            weight = float(
+                    str(workout["Weight"]).replace("kg", "")
+            )
+
+            highest_weight = weight
+
+        if (exercise not in prs or highest_weight > prs[exercise]):
+            prs[exercise] = highest_weight 
+
+    for exercise in sorted(prs):
+        pr=prs[exercise]
+        ctk.CTkLabel(
+           scroll_frame,
+           text=f"🥇 {exercise}: {pr:g} kg",
+           font=("Arial", 16)
+        ).pack(pady=5)
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -363,7 +429,8 @@ search_button.pack(pady=10)
 
 stats_button = ctk.CTkButton(
     app,
-    text="Statistics"
+    text="PR Dashboard",
+    command=view_prs
 )
 stats_button.pack(pady=10)
 
