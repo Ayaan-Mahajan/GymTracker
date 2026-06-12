@@ -15,6 +15,10 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - GUI-based workout entry and viewing
 - Dynamic addition of unlimited sets
 - GUI workout search with result display
+- GUI Personal Records Dashboard
+- Automatic PR calculation from workout history
+- Support for both legacy and multi-set workout formats
+- Scrollable PR display with medal visualization
 
 ## Version History
 - V1 – Add and store workouts using JSON
@@ -32,6 +36,7 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - V13 – GUI workout entry with multi-set support
 - V14 – Dynamic set addition with unlimited workout sets
 - V15 – GUI workout search with exercise and muscle group filters
+- V16 – GUI Personal Records Dashboard with automatic PR calculation
 
 ## Technologies Used
 - Python
@@ -75,12 +80,14 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 ![View Workouts](screenshots/view_workouts.png)
 
 ## Future Improvements
-- Search functionality in GUI
-- Statistics dashboard
-- PR dashboard
+- GUI Statistics Dashboard
+- GUI Edit Workouts
+- GUI Delete Workouts
 - Export workouts to CSV
 - Data visualizations and charts
 - Remove individual sets from the GUI
+- Workout progress graphs
+- Advanced filtering and sorting
 
 ## About This Project
 I built Gym Tracker as a personal project to strengthen my Python programming skills before starting college. Through this project, I learned:
@@ -93,7 +100,8 @@ I built Gym Tracker as a personal project to strengthen my Python programming sk
 - Debugging and problem-solving
 - Git and GitHub workflows
 
-This project reflects my journey from writing simple Python scripts to building a functional desktop application.
+This project reflects my journey from writing simple Python scripts to designing and building a feature-rich desktop fitness application. Through continuous iteration, debugging, and user-focused improvements, Gym Tracker evolved from a basic JSON workout logger into a polished GUI application with search capabilities, personal records tracking, and support for multiple workout formats.
+
 
 ## Author
 Ayaan Mahajan
