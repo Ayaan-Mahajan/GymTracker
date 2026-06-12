@@ -5,34 +5,17 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 
 ## Features
 
-### Workout Management
-- Add workouts with date, exercise, muscle group, weight, and reps
-- View complete workout history
-- Delete existing workouts
-- Edit existing workouts
+- Add workouts with multiple sets
+- View workout history
+- Track workout statistics
+- Monitor Personal Records (PRs)
+- Search workouts by exercise
+- Search workouts by muscle group
+- Delete and edit workouts
+- GUI-based workout entry and viewing
+- Dynamic addition of unlimited sets
+- GUI workout search with result display
 
-### Strength Tracking
-- Support for multiple sets
-- Track weight and reps for each set
-- Personal Records (PRs) tracking
-
-### Analytics
-- Total workout statistics
-- Workout summaries
-
-### Desktop GUI
-- View workouts through a graphical interface
-- Add workouts without using the terminal
-- Dynamic set entry using an "Add Set" button
-- Support for unlimited workout sets
-- Automatic JSON saving through the GUI
-- Backward compatibility with older workout data formats
-
-### Reliability
-- JSON-based persistent storage
-- Error handling using try-except blocks
-- Refactored using functions for better code organization
- 
 ## Version History
 - V1 – Add and store workouts using JSON
 - V2 – View workout history
@@ -48,6 +31,7 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - V12 – GUI workout viewer using CustomTkinter
 - V13 – GUI workout entry with multi-set support
 - V14 – Dynamic set addition with unlimited workout sets
+- V15 – GUI workout search with exercise and muscle group filters
 
 ## Technologies Used
 - Python
