@@ -1,7 +1,5 @@
 # Gym Tracker
-A desktop-based workout tracking application built using Python, JSON, and CustomTkinter.
-
-Gym Tracker helps users log workouts, track progress, monitor personal records, and manage their fitness journey through both a command-line interface and a graphical user interface.
+Gym Tracker is a desktop-based fitness tracking and analytics application built using Python, JSON, and CustomTkinter. It allows users to log workouts, track progress, monitor personal records, and gain insights into their training patterns through an intuitive graphical interface.
 
 ## Features
 
@@ -19,6 +17,7 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - Automatic PR calculation from workout history
 - Support for both legacy and multi-set workout formats
 - Scrollable PR display with medal visualization
+- Workout Statistics Dashboard
 
 ## Version History
 - V1 – Add and store workouts using JSON
@@ -37,6 +36,7 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 - V14 – Dynamic set addition with unlimited workout sets
 - V15 – GUI workout search with exercise and muscle group filters
 - V16 – GUI Personal Records Dashboard with automatic PR calculation
+- V17 – Workout Statistics Dashboard
 
 ## Technologies Used
 - Python
@@ -69,25 +69,37 @@ Gym Tracker helps users log workouts, track progress, monitor personal records, 
 ## Screenshots
 ### Main Window
 
-![Main Window](screenshots/main_window.png)
+![Main Window](screenshots/main_dashboard.png)
 
-### Add Workout Form
-
-![Add Workout Form](screenshots/add_workout.png)
+### Add Workout Window
+![Add Workout](screenshots/add_workout.png)
 
 ### View Workouts
+![View Workout](screenshots/view_workouts.png)
 
-![View Workouts](screenshots/view_workouts.png)
+### Search Workouts
+![Search Workouts](screenshots/search_workouts.png)
+
+
+### Personal Records Dashboard
+![PR Dashboard](screenshots/pr_dashboard.png)
+
+
+### Workout Statistics Dashboard 
+![Workout Statistics](screenshots/workout_statistics.png)
+
+
 
 ## Future Improvements
-- GUI Statistics Dashboard
 - GUI Edit Workouts
 - GUI Delete Workouts
 - Export workouts to CSV
 - Data visualizations and charts
-- Remove individual sets from the GUI
 - Workout progress graphs
 - Advanced filtering and sorting
+- Remove individual sets from the GUI
+- Training consistency tracker
+- Muscle group distribution charts
 
 ## About This Project
 I built Gym Tracker as a personal project to strengthen my Python programming skills before starting college. Through this project, I learned:
@@ -100,7 +112,12 @@ I built Gym Tracker as a personal project to strengthen my Python programming sk
 - Debugging and problem-solving
 - Git and GitHub workflows
 
-This project reflects my journey from writing simple Python scripts to designing and building a feature-rich desktop fitness application. Through continuous iteration, debugging, and user-focused improvements, Gym Tracker evolved from a basic JSON workout logger into a polished GUI application with search capabilities, personal records tracking, and support for multiple workout formats.
+This project reflects my journey from writing simple Python scripts to designing and building a feature-rich desktop fitness application.
+
+Through 17 iterative versions, Gym Tracker evolved from a basic JSON workout logger into a fitness analytics platform featuring GUI-based workout management, dynamic multi-set support, automatic PR tracking, advanced search capabilities, and training insights such as workout frequency, total volume, and exercise trends.
+
+Building Gym Tracker strengthened not only my Python skills, but also my understanding of software design, iterative development, debugging, and user-focused product improvement.
+
 
 
 ## Author
