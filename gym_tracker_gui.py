@@ -385,6 +385,108 @@ def view_prs():
            font=("Arial", 16)
         ).pack(pady=5)
 
+def workout_stats():
+
+    window = ctk.CTkToplevel(app)
+
+    window.title("Workout Statistics")
+    window.geometry("450x400")
+
+    ctk.CTkLabel(
+        window,
+        text="📊 Workout Statistics",
+        font=("Arial", 20, "bold")
+    ).pack(pady=20)
+
+    try:
+        with open("workouts.json", "r") as file:
+            workouts = json.load(file)
+
+    except (FileNotFoundError, json.JSONDecodeError):
+
+        ctk.CTkLabel(
+            window,
+            text="No workouts found."
+        ).pack(pady=20)
+
+        return
+    workout_dates = set()
+
+    for workout in workouts:
+
+        workout_dates.add(workout["Date"])
+
+    total_workouts = len(workout_dates)
+    total_sets = 0
+    total_volume = 0
+    muscle_counts = {}
+    exercise_counts = {}
+    for workout in workouts:
+        muscle = workout["Muscle_Group"]
+        if muscle not in muscle_counts:
+            muscle_counts[muscle] = 0
+        muscle_counts[muscle] += 1
+
+        exercise = workout["Exercise"]
+        if exercise not in exercise_counts:
+            exercise_counts[exercise] = 0
+        exercise_counts[exercise] += 1
+
+        if "Sets" in workout:
+            total_sets += len(workout["Sets"])
+            for workout_set in workout["Sets"]:
+                weight = float(workout_set["Weight"])
+                reps = int(workout_set["Reps"])
+                total_volume += weight * reps
+            
+        else:
+            total_sets += 1
+            weight = float(str(workout["Weight"]).replace("kg", ""))
+            reps = int(workout["Reps"])
+            total_volume += weight * reps
+    most_trained_muscle = max(
+    muscle_counts,
+    key=muscle_counts.get
+)
+
+    most_performed_exercise = max(
+    exercise_counts,
+    key=exercise_counts.get
+)
+
+    ctk.CTkLabel(
+        window,
+        text=f"📅 Total Workout Days: {total_workouts}",
+        font=("Arial", 18)
+    ).pack(pady=15)
+
+    ctk.CTkLabel(
+    window,
+    text=f"💪 Total Sets: {total_sets}",
+    font=("Arial", 18)
+    ).pack(pady=15)
+
+    ctk.CTkLabel(
+    window,
+    text=f"🏋️ Total Volume: {total_volume:,.0f} kg",
+    font=("Arial", 18)
+    ).pack(pady=15)
+
+    ctk.CTkLabel(
+    window,
+    text=f"🔥 Most Trained Muscle: {most_trained_muscle}",
+    font=("Arial", 18)
+    ).pack(pady=15)
+
+    ctk.CTkLabel(
+    window,
+    text=(
+        f"🥇 Most Performed Exercise: "
+        f"{most_performed_exercise}"
+    ),
+    font=("Arial", 18)
+).pack(pady=15)
+
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
@@ -433,6 +535,14 @@ stats_button = ctk.CTkButton(
     command=view_prs
 )
 stats_button.pack(pady=10)
+
+workout_stats_button = ctk.CTkButton(
+    app,
+    text="Workout Statistics",
+    command=workout_stats
+)
+
+workout_stats_button.pack(pady=10)
 
 
 exit_button = ctk.CTkButton(
