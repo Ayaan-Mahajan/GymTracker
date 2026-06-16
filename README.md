@@ -1,4 +1,9 @@
 # Gym Tracker
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![GUI](https://img.shields.io/badge/GUI-CustomTkinter-green)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Platform](https://img.shields.io/badge/Platform-Desktop-lightgrey)
+
 Gym Tracker is a desktop-based fitness tracking and analytics application built using Python, JSON, and CustomTkinter. It allows users to log workouts, track progress, monitor personal records, and gain insights into their training patterns through an intuitive graphical interface.
 
 ## Features
