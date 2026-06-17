@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import json
+from tkinter import messagebox
 
 def add_workout():
 
@@ -487,6 +488,157 @@ def workout_stats():
     font=("Arial", 18)
 ).pack(pady=15)
 
+def edit_workout():
+    
+    window = ctk.CTkToplevel(app)
+
+    window.title("Edit Workout")
+
+    window.geometry("500x500")
+
+
+    ctk.CTkLabel(
+        window,
+        text="Edit Workout",
+        font=("Arial",20,"bold")
+    ).pack(pady=20)
+
+    scroll_frame = ctk.CTkScrollableFrame(
+    window,
+    width=430,
+    height=350)
+    scroll_frame.pack(
+    pady=10,
+    padx=20,
+    fill="both",
+    expand=True)
+
+    try:
+        with open("workouts.json", "r") as file:
+             workouts = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        workouts = []
+
+    def open_editor(workout):
+        editor = ctk.CTkToplevel(app)
+        editor.title(
+        "Edit Workout")
+        editor.geometry(
+        "400x500")
+        ctk.CTkLabel(
+
+        editor,
+
+        text="Edit Workout",
+
+        font=("Arial",20,"bold")
+
+        ).pack(
+        pady=20
+        )
+
+        ctk.CTkLabel(editor,text="Date").pack()
+        date_entry=ctk.CTkEntry(editor)
+        date_entry.pack()
+
+        ctk.CTkLabel(editor,text="Exercise").pack()
+        exercise_entry=ctk.CTkEntry(editor)
+        exercise_entry.pack()
+         
+        ctk.CTkLabel(editor,text="Muscle Group").pack()
+        muscle_entry=ctk.CTkEntry(editor)
+        muscle_entry.pack()
+
+        date_entry.insert(0,workout["Date"])
+        exercise_entry.insert(0,workout["Exercise"])
+        muscle_entry.insert(0,workout["Muscle_Group"])
+
+        sets_frame = ctk.CTkScrollableFrame(
+        editor,
+        width=300,
+        height=250
+)
+        sets_frame.pack(pady=10,fill="both",expand=True)
+        
+        set_entries=[]
+        def add_set(weight_val="", reps_val=""):
+            set_frame = ctk.CTkFrame(sets_frame)
+            set_frame.pack(pady=5)
+            weight = ctk.CTkEntry(set_frame, width=80)
+            reps = ctk.CTkEntry(set_frame, width=80)
+            weight.grid(row=0,column=0,padx=5)
+            reps.grid(row=0,column=1,padx=5)
+            weight.insert(0, weight_val)
+            reps.insert(0, reps_val)
+            set_entries.append((weight, reps))
+
+        for s in workout["Sets"]:
+             add_set(s["Weight"],s["Reps"])
+
+        ctk.CTkButton(
+
+           editor,
+
+           text="➕ Add Set",
+
+           command=add_set
+
+        ).pack(
+
+            pady=10
+
+        )
+
+        
+        def save_changes():
+            idx = workouts.index(workout)
+            updated_sets=[]
+            for weight,reps in set_entries:
+                updated_sets.append({ "Weight":weight.get(),  "Reps":reps.get() })
+            workouts[idx]={ "Date":date_entry.get(), "Exercise":exercise_entry.get(), "Muscle_Group":muscle_entry.get(), "Sets":updated_sets}
+            with open( "workouts.json", "w") as file:
+                json.dump(workouts,file,indent=4)
+            messagebox.showinfo("Success", "Workout Updated Successfully! 🔥")
+            editor.destroy()
+            window.destroy()
+            edit_workout()
+
+        save_button = ctk.CTkButton(
+
+        editor,
+
+        text="Save Changes",
+
+        command=save_changes)
+        
+        save_button.pack(
+
+        pady=20)
+         
+
+    for workout in workouts:
+        button_text = (
+        f"{workout['Date']} | "
+        f"{workout['Exercise']}"
+    )
+        ctk.CTkButton(
+
+           scroll_frame,
+
+           text=button_text,
+
+           command=lambda w=workout:
+           open_editor(w)
+
+        ).pack(
+
+           pady=5,
+
+           fill="x"
+
+        )
+
+
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
@@ -544,6 +696,13 @@ workout_stats_button = ctk.CTkButton(
 
 workout_stats_button.pack(pady=10)
 
+edit_button = ctk.CTkButton(
+    app,
+    text="Edit Workout",
+    command=edit_workout
+)
+
+edit_button.pack(pady=10)
 
 exit_button = ctk.CTkButton(
     app,
