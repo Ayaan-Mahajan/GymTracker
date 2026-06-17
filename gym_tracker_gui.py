@@ -123,7 +123,7 @@ def add_workout():
   
 
 def view_workouts():
-    print("BRO THE BUTTON WORKS 😭🔥")
+    
 
     window = ctk.CTkToplevel(app)
 
@@ -638,6 +638,112 @@ def edit_workout():
 
         )
 
+def delete_workout():
+
+    window=ctk.CTkToplevel(app)
+
+    window.title(
+
+            "Delete Workout"
+
+    )
+
+    window.geometry(
+
+            "500x500"
+
+    )
+    scroll_frame=ctk.CTkScrollableFrame(
+
+        window,
+
+        width=430,
+
+        height=350
+
+    )
+    scroll_frame.pack(
+
+        pady=10,
+
+        padx=20,
+
+        fill="both",
+
+        expand=True
+
+    ) 
+    try:
+        with open( "workouts.json", "r") as file:
+            workouts=json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        workouts=[]
+
+    if len(workouts)==0:
+        ctk.CTkLabel(
+
+            window,
+
+            text="No workouts found.",
+
+            font=("Arial",18)
+
+        ).pack(
+
+            pady=30
+
+        )
+        return
+        
+    def remove_workout(workout):
+        confirm = messagebox.askyesno(
+
+           "Delete Workout",
+
+           f"Delete {workout['Exercise']} ?")
+        if not confirm:
+            return
+        workouts.remove(workout)
+        with open("workouts.json",  "w") as file:
+            json.dump(workouts,  file,  indent=4)
+
+        messagebox.showinfo(
+
+        "Success",
+
+        "Workout Deleted Successfully! 🗑️")
+
+        window.destroy()
+        
+
+    for workout in workouts:
+        button_text=(
+                    f"{workout['Date']} | "
+
+                    f"{workout['Exercise']}")
+
+
+        ctk.CTkButton(
+
+            scroll_frame,
+
+
+            text=button_text,
+
+
+            command=lambda w=workout:
+
+
+            remove_workout(w)
+
+
+        ).pack(
+
+
+            pady=5,
+
+
+            fill="x")
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -703,6 +809,20 @@ edit_button = ctk.CTkButton(
 )
 
 edit_button.pack(pady=10)
+
+delete_button = ctk.CTkButton(
+
+        app,
+
+        text="Delete Workout",
+
+        command=delete_workout
+
+)
+
+delete_button.pack(
+        pady=10
+)
 
 exit_button = ctk.CTkButton(
     app,
